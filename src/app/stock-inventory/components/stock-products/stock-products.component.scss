@@ -1,0 +1,12 @@
+.stock-product {
+  width: 94%;
+  margin: auto;
+  display: block;
+}
+
+.stock-product__content {
+  margin-top: 12px;
+  & button {
+    margin-left: 12px;
+  }
+}

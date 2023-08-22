@@ -1,0 +1,19 @@
+<div class="form-wrapper">
+  <div>
+    <pre><b>{{ form.value | json }}</b></pre>
+  </div>
+  <div class="stock-inventory">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <stock-branch [parent]="form"></stock-branch>
+      <stock-selector
+        (added)="addStock($event)"
+        [parent]="form"
+        [products]="products"
+      ></stock-selector>
+      <stock-products
+        (removed)="removeStock($event)"
+        [parent]="form"
+      ></stock-products>
+    </form>
+  </div>
+</div>

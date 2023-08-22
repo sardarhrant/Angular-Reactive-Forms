@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  width: 100%;
+  & input {
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    display: block;
+    width: 90%;
+    margin: 5px auto;
+  }
+}
