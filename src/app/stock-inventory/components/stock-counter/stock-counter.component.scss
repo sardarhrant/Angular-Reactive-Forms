@@ -1,0 +1,42 @@
+.stock-counter {
+  &.focused {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  margin: 12px 0;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  overflow: hidden;
+  display: inline-block;
+  & > div > div {
+    display: flex;
+    align-items: center;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    width: 100px;
+  }
+
+  button {
+    border-radius: 0;
+    line-height: 1;
+    padding: 5px 15px;
+    background-color: #9e61c8;
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    cursor: pointer;
+    &:disabled {
+      background-color: rgba(0, 0, 0, 0.1);
+      color: rgba(0, 0, 0, 0.4);
+    }
+  }
+}

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Product, CartItem } from '../models/product-interface';
 import { StockInventoryService } from '../services/stock-inventory.service';
-import { Observable } from 'rxjs';
-import { forkJoin } from 'rxjs/internal/observable/forkJoin';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'stock-inventory',
@@ -12,6 +11,7 @@ import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 })
 export class StockInventoryComponent implements OnInit {
   products!: Product[];
+  productMap!: Map<number, Product>;
   form = this.fb.group({
     store: this.fb.group({
       branch: '',
@@ -30,10 +30,19 @@ export class StockInventoryComponent implements OnInit {
     const cart = this.stockInventoryService.getCartItems();
     const products = this.stockInventoryService.getProducts();
 
-    const data = forkJoin({
+    forkJoin({
       cart: this.stockInventoryService.getCartItems(),
       products: this.stockInventoryService.getProducts(),
-    }).subscribe(console.log);
+    }).subscribe(({ cart, products }: any) => {
+      const myMap = products.map((product: any) => {
+        return [product.id, product];
+      });
+
+      this.productMap = new Map<number, Product>(myMap);
+      this.products = products;
+
+      cart.forEach((item: any) => this.addStock(item));
+    });
   }
 
   onSubmit() {

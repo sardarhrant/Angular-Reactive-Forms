@@ -1,8 +1,8 @@
 <div class="form-wrapper">
-  <div>
+  <div class="form-wrapper__column">
     <pre><b>{{ form.value | json }}</b></pre>
   </div>
-  <div class="stock-inventory">
+  <div class="form-wrapper__column stock-inventory">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <stock-branch [parent]="form"></stock-branch>
       <stock-selector
@@ -13,6 +13,7 @@
       <stock-products
         (removed)="removeStock($event)"
         [parent]="form"
+        [map]="productMap"
       ></stock-products>
     </form>
   </div>

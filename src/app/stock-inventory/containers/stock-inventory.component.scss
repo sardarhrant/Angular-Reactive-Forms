@@ -2,4 +2,12 @@
   display: grid;
   align-content: space-evenly;
   grid-template-columns: 25fr 75fr;
+  column-gap: 10px;
+}
+.form-wrapper__column {
+  border: 1px solid #3f3f3f;
+  padding: 4px;
+}
+.stock-inventory {
+  padding: 5px;
 }

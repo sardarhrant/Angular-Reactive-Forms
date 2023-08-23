@@ -17,5 +17,9 @@ export class StockSelectorComponent {
   addStock() {
     const control = this.parent.get('selector')?.value;
     this.added.emit(control);
+    this.parent.get('selector')?.reset({
+      quantity: 20,
+      product_id: '',
+    });
   }
 }

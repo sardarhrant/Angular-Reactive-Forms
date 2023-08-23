@@ -6,12 +6,13 @@
     border-radius: 2px;
     border: 1px solid #ccc;
     display: block;
-    width: 90%;
+    width: 100%;
     margin: 5px auto;
+    box-sizing: border-box;
   }
   & select,
   button {
-    width: 94%;
+    width: 100%;
     margin: auto;
     display: block;
     padding: 10px;

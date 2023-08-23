@@ -1,18 +1,22 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { EMPTY, Observable, catchError, map } from 'rxjs';
 import { CartItem, Product } from '../models/product-interface';
+import { API_URL, AppConfig } from 'src/app/ApiUrl-injection.token';
 
 @Injectable()
 export class StockInventoryService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(API_URL) private config: AppConfig
+  ) {}
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('/api/v1/product');
+    return this.http.get<Product[]>(`${this.config.apiUrl}/products`);
   }
 
   getCartItems(): Observable<CartItem> {
-    return this.http.get<CartItem>('/api/v1/cart').pipe(
+    return this.http.get<CartItem>(`${this.config.apiUrl}/cart`).pipe(
       map((response) => response),
       catchError((error: any) => EMPTY)
     );
