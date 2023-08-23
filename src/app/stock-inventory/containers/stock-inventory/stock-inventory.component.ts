@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
-import { Product, CartItem } from '../models/product-interface';
-import { StockInventoryService } from '../services/stock-inventory.service';
+import {
+  FormBuilder,
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Product } from '../../models/product-interface';
+import { StockInventoryService } from '../../services/stock-inventory.service';
 import { forkJoin } from 'rxjs';
+import { StockValidators } from './stock-inventory.validators';
 
 @Component({
   selector: 'stock-inventory',
@@ -12,14 +19,17 @@ import { forkJoin } from 'rxjs';
 export class StockInventoryComponent implements OnInit {
   products!: Product[];
   productMap!: Map<number, Product>;
-  form = this.fb.group({
-    store: this.fb.group({
-      branch: '',
-      code: '',
-    }),
-    selector: this.createStock({}),
-    stock: this.fb.array([]),
-  });
+  form = this.fb.group(
+    {
+      store: this.fb.group({
+        branch: ['', [Validators.required, StockValidators.checkBranch]],
+        code: ['', [Validators.required, StockValidators.checkCode]],
+      }),
+      selector: this.createStock({}),
+      stock: this.fb.array([]),
+    },
+    { validator: StockValidators.checkStockExists }
+  );
 
   constructor(
     private fb: FormBuilder,

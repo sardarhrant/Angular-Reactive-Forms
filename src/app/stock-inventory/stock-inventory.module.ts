@@ -1,5 +1,4 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { StockInventoryComponent } from './containers/stock-inventory.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { StockSelectorComponent } from './components/stock-selector/stock-selector.component';
@@ -8,6 +7,7 @@ import { StockBranchComponent } from './components/stock-branch/stock-branch.com
 import { HttpClientModule } from '@angular/common/http';
 import { StockInventoryService } from './services/stock-inventory.service';
 import { StockCounterComponent } from './components/stock-counter/stock-counter.component';
+import { StockInventoryComponent } from './containers/stock-inventory/stock-inventory.component';
 
 @NgModule({
   declarations: [

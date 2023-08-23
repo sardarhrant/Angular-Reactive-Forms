@@ -14,6 +14,13 @@ export class StockSelectorComponent {
 
   @Output() added = new EventEmitter<any>();
 
+  get stockExists() {
+    return (
+      this.parent.hasError('stockExists') &&
+      this.parent.get('selector.product_id')?.dirty
+    );
+  }
+
   addStock() {
     const control = this.parent.get('selector')?.value;
     this.added.emit(control);

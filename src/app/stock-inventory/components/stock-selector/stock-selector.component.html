@@ -15,6 +15,11 @@
       >
       </stock-counter>
     </div>
-    <button (click)="addStock()" type="button">Add stock</button>
+    <button [disabled]="stockExists" (click)="addStock()" type="button">
+      Add stock
+    </button>
+    <div class="stock-selector__error" *ngIf="stockExists">
+      Item already exists
+    </div>
   </div>
 </div>
