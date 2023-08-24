@@ -1,11 +1,18 @@
 <div [formGroup]="parent">
   <div formGroupName="store">
     <input type="text" placeholder="Branch Id" formControlName="branch" />
-    <div class="error" *ngIf="required('branch')">Branch ID is required</div>
-    <div class="error" *ngIf="invalid">
+    <div class="error" *ngIf="isBranchRequired('branch')">
+      Branch ID is required
+    </div>
+    <div class="error" *ngIf="isBranchInvalid">
       Invalid branch code: 1 letter and 3 numbers
     </div>
+    <div class="error" *ngIf="isBranchUnknown">
+      Unknown branch, plase check ID
+    </div>
     <input type="text" placeholder="Manager Code" formControlName="code" />
-    <div class="error" *ngIf="required('code')">Manager ID is required</div>
+    <div class="error" *ngIf="isBranchRequired('code')">
+      Manager ID is isBranchRequired
+    </div>
   </div>
 </div>

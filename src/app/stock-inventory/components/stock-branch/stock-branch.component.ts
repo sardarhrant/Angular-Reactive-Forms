@@ -9,15 +9,22 @@ import { FormGroup } from '@angular/forms';
 export class StockBranchComponent {
   @Input() parent!: FormGroup;
 
-  get invalid() {
+  get isBranchInvalid() {
     return (
       this.parent.get('store.branch')?.hasError('invalidBranch') &&
       this.parent.get('store.branch')?.dirty &&
-      !this.required('branch')
+      !this.isBranchRequired('branch')
     );
   }
 
-  required(name: string) {
+  get isBranchUnknown() {
+    return (
+      this.parent.get('store.branch')?.hasError('unknownBranch') &&
+      this.parent.get('store.branch')?.dirty
+    );
+  }
+
+  isBranchRequired(name: string) {
     return (
       this.parent.get(`store.${name}`)?.hasError('required') &&
       this.parent.get(`store.${name}`)?.touched

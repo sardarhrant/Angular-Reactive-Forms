@@ -1,6 +1,6 @@
 <div class="form-wrapper">
   <div class="form-wrapper__column">
-    <pre><b>{{ form.value | json }}</b></pre>
+    <pre><b>{{ form.value | json }} </b><b><i>Branches</i></b><b>{{data?.branches | json}}</b></pre>
   </div>
   <div class="form-wrapper__column stock-inventory">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
